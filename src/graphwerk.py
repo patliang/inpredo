@@ -6,7 +6,7 @@ import uuid
 
 # Input your csv file here with historical data
 
-ad = genfromtxt('../financial_data/eurusd.csv', delimiter=',' ,dtype=str)
+ad = genfromtxt('../financial_data/BTC-USD.csv', delimiter=',' ,dtype=str)
 pd = np.flipud(ad)
 
 buy_dir = '../data/train/buy/'

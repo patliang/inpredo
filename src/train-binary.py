@@ -6,7 +6,7 @@ import sys
 
 # os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
 
-from tensorflow import keras
+from tensorflow import keras 
 from keras import optimizers
 from keras.layers import Dropout, Flatten, Dense, Activation, BatchNormalization
 from keras.layers.convolutional import Convolution2D, MaxPooling2D, Conv2D
@@ -17,6 +17,7 @@ from keras.callbacks import ModelCheckpoint
 DEV = False
 argvs = sys.argv
 argc = len(argvs)
+
 
 if argc > 1 and (argvs[1] == "--development" or argvs[1] == "-d"):
   DEV = True
@@ -101,13 +102,13 @@ validation_generator = test_datagen.flow_from_directory(
 """
 Tensorboard log
 """
-target_dir = "../models/weights-improvement-{epoch:02d}-{val_acc:.2f}.hdf5"
+target_dir = "./models/weights-improvement-{epoch:02d}-{val_accuracy:.2f}.hdf5"
 if not os.path.exists(target_dir):
   os.mkdir(target_dir)
-model.save('./src/models/model.h5')
-model.save_weights('./src/models/weights.h5')
+model.save('../src/models/model.h5')
+model.save_weights('../src/models/weights.h5')
 
-checkpoint = ModelCheckpoint(target_dir, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
+checkpoint = ModelCheckpoint(target_dir, monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
 callbacks_list = [checkpoint]
 
 model.fit(
@@ -118,4 +119,3 @@ model.fit(
     validation_data=validation_generator,
     callbacks=callbacks_list,
     validation_steps=nb_validation_samples//batch_size)
-

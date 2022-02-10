@@ -119,3 +119,4 @@ model.fit(
     validation_data=validation_generator,
     callbacks=callbacks_list,
     validation_steps=nb_validation_samples//batch_size)
+

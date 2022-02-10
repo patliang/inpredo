@@ -10,7 +10,7 @@ img_width, img_height = 150, 150
 model_path = '../src/models/model.h5'
 weights_path = '../src/models/weights'
 model = load_model(model_path)
-test_path = '../data/validation'
+data_path = '../data/validation'
 
 def predict(file):
   x = load_img(file, target_size=(img_width,img_height))
